@@ -1,0 +1,13 @@
+.submit-btn{
+    border-radius: 30px;
+    background-color: #e60023;
+    padding: 8px 16px;
+    color: #fff;
+    &.loading{
+
+        background-color: #c5001e;
+    }
+    &:hover {
+      background-color: #c5001e;
+    }
+}

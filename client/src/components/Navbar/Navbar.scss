@@ -1,0 +1,29 @@
+
+.navbar{
+
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 20px 0px;
+    .link a{
+        padding: 12px 16px;
+        background-color: none;
+        color: #000;
+        border-radius: 30px;
+    }
+    .link a.active{
+        // padding: 12px 16px;
+        background-color: #222;
+        color: #fff;
+        // border-radius: 30px;
+    }
+    
+    
+    .profile-controls .log-button{
+        border-radius: 30px;
+        background-color:   #e60023;
+        padding: 12px 16px;
+        color: #fff;
+        &:hover{
+            background-color:   #c5001e;
+    
+        }
+    }
+}
