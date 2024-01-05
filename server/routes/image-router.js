@@ -9,6 +9,7 @@ const {
   getSavedPosts,
   uploadUserPic,
   deletePost,
+  getUserProfile,
 } = require("../controllers/img-controller");
 const router = express.Router();
 const multer = require("multer");
@@ -78,8 +79,10 @@ router.post(
 );
 
 //user posts data send route
-router.get("/getuserposts", getUserPosts);
+router.get("/getuserprofile", getUserProfile);
 
+//user posts data send route
+router.get("/getuserposts", getUserPosts);
 
 // user saved posts data send route
 router.get("/getsavedposts", getSavedPosts);

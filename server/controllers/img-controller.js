@@ -3,6 +3,25 @@ const User = require("../modals/userModel");
 const getDataFromToken = require("../utils/getDataFromToken");
 const fs = require("fs");
 
+const getUserProfile = async (req, res) => {
+  try {
+    const userId = getDataFromToken(req);
+
+    console.log("id", userId);
+    const userData = await User.findOne({ _id: userId })
+    .select("-password -posts -savedPosts");
+    // const userData = await User.findById(userId);
+    console.log(
+      " ~ file: img-controller.js:13 ~ getData ~ userData:",
+      userData
+    );
+
+    res.json({ message: "data sent", data: userData });
+  } catch (error) {
+    res.json({ message: "Error: " + error.message });
+  }
+};
+
 const getUserPosts = async (req, res) => {
   try {
     const userId = getDataFromToken(req);
@@ -99,17 +118,19 @@ const uploadUserPic = async (req, res) => {
       fs.unlinkSync(filePath);
     }
 
-    const userUpdated = await User.findOneAndUpdate(
+    const updatedUser = await User.findOneAndUpdate(
       { _id: userId },
       { userPic: req.file.filename },
       { new: true }
     );
 
-    console.log("user", userUpdated);
+    console.log("user", updatedUser);
     // await user.save();
 
     // res.send("file uploaded successfully")
-    res.status(200).json({ message: "uploaded successfully" });
+    res
+      .status(200)
+      .json({ message: "uploaded successfully", userPic: updatedUser.userPic });
   } catch (error) {
     res.json({ message: "Error: " + error.message });
   }
@@ -278,6 +299,7 @@ const deletePost = async (req, res) => {
 };
 
 module.exports = {
+  getUserProfile,
   getUserPosts,
   getSavedPosts,
   uploadFile,
@@ -287,4 +309,5 @@ module.exports = {
   savePost,
   unSavePost,
   deletePost,
+  
 };

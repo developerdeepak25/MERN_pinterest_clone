@@ -21,7 +21,8 @@ const userSchema = new mongoose.Schema({
   userPic: {
     type: String,
     required: false,
-    unique: true,
+    unique: false,
+    default: null
   },
   posts: [
     {

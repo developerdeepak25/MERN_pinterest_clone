@@ -37,9 +37,9 @@ const Profile = () => {
           .then((res) => {
             const { data } = res.data;
             const { posts, savesPosts, ...restUserData } = data;
-            console.log('user info from Db' , restUserData);
+            console.log('user info from Db' , data);
             dispatch(updateStatePosts(posts));
-            dispatch(updateState(restUserData));
+            // dispatch(updateState(restUserData));
           })
           .catch((error) => {
             console.log(error);
@@ -61,7 +61,7 @@ const Profile = () => {
           .get("/image/getsavedposts")
           .then((res) => {
             const { data } = res.data;
-            console.log("savedpost data form Db", data);
+            // console.log("savedpost data form Db", data);
             dispatch(updateStateSavedPosts(data));
           })
           .catch((error) => {
@@ -114,23 +114,7 @@ const Profile = () => {
         <div className="profile-header flex flex-col items-center pt-10">
           <div className="relative profile-pic-main mb-5">
             <div className="  w-32 aspect-square rounded-full overflow-hidden flex justify-center">
-              {/* {userData?.userPic ? (
-                <img
-                  className="object-cover min-h-full min-w-full"
-                  src={`/pic_uploads/${userData.userPic}`}
-                  alt="pic"
-                />
-              ) : (
-                <img
-                  className="object-cover min-h-full min-w-full"
-                  src={
-                    tempPic
-                      ? URL.createObjectURL(tempPic)
-                      : require("../../image/icons/blank_profile.jpg")
-                  }
-                  alt="pic"
-                />
-              )} */}
+             
 
               {tempPic ? (
                 <ProfileImg

@@ -5,6 +5,7 @@ import LeftArrow from "../../components/Svgs/LeftArrow";
 import "./SinglePin.scss";
 import SaveButton from "../../components/SinglePinComponents/SaveButton";
 import SuspenseImg from "../../components/SuspenseImg/SuspenseImg";
+import ProfileImg from "../../components/ProfileImg/ProfileImg";
 
 const SinglePin = () => {
   const [postData, setPostData] = useState({});
@@ -76,12 +77,12 @@ const SinglePin = () => {
               <div className="creator-profile flex  w-full items-center mt-auto gap-2">
                 <div className="creator-image rounded-full w-9 aspect-square overflow-hidden opacity-80 shrink-0">
                   {user?.userPic ? (
-                    <img
+                    <ProfileImg
                       src={`/pic_uploads/${user.userPic}`}
                       alt={user.username}
                     />
                   ) : (
-                    <img
+                    <ProfileImg
                       src={require("../../image/icons/blank_profile.jpg")}
                       alt={user?.username}
                       className="w-full"

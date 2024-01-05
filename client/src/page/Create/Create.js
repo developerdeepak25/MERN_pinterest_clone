@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import InputField from "../../components/Inputs/InputField";
 
 const Create = () => {
-  const [file, setFile] = useState();
+  const [file, setFile] = useState(null);
   const [fileMetadata, setFileMetaData] = useState({
     pinTitle: "",
     pinDescription: "",
@@ -65,7 +65,7 @@ const Create = () => {
   };
   const preventDefault = (event) => {
     event.preventDefault();
-    console.log("checking");
+    // console.log("checking");
   };
   useEffect(() => {
     // console.log(file);

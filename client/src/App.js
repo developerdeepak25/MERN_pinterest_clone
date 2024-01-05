@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "./page/Login/Login";
 import Home from "./page/Home/Home";
@@ -8,8 +8,13 @@ import Navbar from "./components/Navbar/Navbar";
 import Create from "./page/Create/Create";
 import Profile from "./page/Profile/Profile";
 import SinglePin from "./page/Singlepin/SinglePin";
+import { useFetchUserInfo } from "./customHooks/useFetchUserInfo";
 
 const App = () => {
+  // useEffect(() => {
+  //   isAuthenticated && fetchUserInfo();
+  // }, [isAuthenticated]);
+  useFetchUserInfo();
   return (
     <>
       <Navbar />

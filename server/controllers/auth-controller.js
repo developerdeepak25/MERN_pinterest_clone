@@ -22,7 +22,7 @@ const signup = async (req, res) => {
     // console.log(req.body);
   } catch (error) {
     console.log("🚀 ~ file: auth-controller.js:23 ~ signup ~ error:", error);
-    res.json({ message: "Error: " + error.message });
+    res.status(400).json({ message: "Error: " + error.message });
   }
 };
 

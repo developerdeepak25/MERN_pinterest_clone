@@ -15,10 +15,13 @@ const Home = () => {
           "🚀 ~ file: Home.js:10 ~ getDataFromServer ~ resData:",
           resData
         );
-        const { posts } =  resData.data
+        const { posts } = resData.data;
+        // console.log('getalldata',resData.data);
         // setUserData(data);
-        setPosts(posts);
-       console.log(posts);
+        if (posts) {
+          setPosts(posts);
+        }
+        console.log(posts);
       } catch (error) {
         console.log(error);
       }

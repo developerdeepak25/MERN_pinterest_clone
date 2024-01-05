@@ -19,9 +19,17 @@ const ImgUploader = ({ setFile }) => {
   const onDrop = (event) => {
     event.preventDefault();
     const file = event.dataTransfer.files[0];
-    setFile(file);
-    setSelectedFile(file);
-    console.log("drop");
+    if (file.type.startsWith("image/")) {
+     
+      setFile(file);
+      setSelectedFile(file);
+      console.log("drop", file);
+    } else{
+      setFile(null);
+      setSelectedFile(null);
+      console.log('dropped file is not image');
+
+    }
   };
   const onDragOver = (event) => {
     event.preventDefault();

@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProfileImg = ({ alt, src, className, ...rest }) => {
+const ProfileImg = ({ alt, src, className='', ...rest }) => {
   return (
     <img
       src={src}
