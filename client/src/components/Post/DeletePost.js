@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { deleteStatePost } from "../../store/slices/UserSlice";
 
 const DeletePost = ({ id }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const deletePost = async (event) => {
     event.stopPropagation();
     console.log("inside deletePost function");
@@ -16,9 +16,8 @@ const DeletePost = ({ id }) => {
         resData
       );
       if (resData.status === 200) {
-        dispatch(deleteStatePost(id))
+        dispatch(deleteStatePost(id));
         console.log("post deleted successfully");
-
       }
       // const { postData } = resData.data;
       // console.log(postData);

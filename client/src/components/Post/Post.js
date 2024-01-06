@@ -12,7 +12,6 @@ const Post = ({ data, userInfo, type }) => {
   const username = userInfo?.username || user?.username;
   const userPic = userInfo?.userPic || user?.userPic;
   console.log(username, data);
-  
 
   return (
     <div className="post-container rounded-xl overflow-hidden mb-4 relative">
