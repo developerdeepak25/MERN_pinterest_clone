@@ -18,7 +18,7 @@ const signup = async (req, res) => {
     const savedUser = await newUser.save();
     console.log(savedUser);
 
-    res.status(201).json({ message: "user created successfully" });
+    res.status(200).json({ message: "user created successfully" });
     // console.log(req.body);
   } catch (error) {
     console.log("🚀 ~ file: auth-controller.js:23 ~ signup ~ error:", error);

@@ -3,6 +3,7 @@ import DeleteSvg from "../Svgs/DeleteSvg";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { deleteStatePost } from "../../store/slices/UserSlice";
+import toast from "react-hot-toast";
 
 const DeletePost = ({ id }) => {
   const dispatch = useDispatch()
@@ -17,8 +18,8 @@ const DeletePost = ({ id }) => {
       );
       if (resData.status === 200) {
         dispatch(deleteStatePost(id))
+        toast.success('post deleted successfully')
         console.log("post deleted successfully");
-
       }
       // const { postData } = resData.data;
       // console.log(postData);

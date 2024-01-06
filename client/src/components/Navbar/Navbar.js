@@ -6,6 +6,7 @@ import { logout } from "../../store/slices/AuthSlice";
 import "./Navbar.scss";
 import { resetState } from "../../store/slices/UserSlice";
 import ProfileImg from "../ProfileImg/ProfileImg";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -19,12 +20,15 @@ const Navbar = () => {
   const navigate = useNavigate();
   const logoutHandler = async () => {
     try {
-      await fetch("/logout", {
+      const response = await fetch("/logout", {
         method: "get",
       });
-      dispatch(logout());
-      dispatch(resetState());
-      navigate("/login");
+      if (response.status === 200) {
+        toast.success("logout successful");
+        dispatch(logout());
+        dispatch(resetState());
+        navigate("/login");
+      }
     } catch (err) {
       console.log(err.message);
     }

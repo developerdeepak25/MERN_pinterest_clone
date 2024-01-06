@@ -5,6 +5,7 @@ import ImgUploader from "../../components/ImgUploader/ImgUploader";
 import ErrorSvg from "../../components/Svgs/ErrorSvg";
 import { useNavigate } from "react-router-dom";
 import InputField from "../../components/Inputs/InputField";
+import toast from "react-hot-toast";
 
 const Create = () => {
   const [file, setFile] = useState(null);
@@ -53,11 +54,14 @@ const Create = () => {
       if (response.status === 200) {
         // console.log("Upload.js", resJson);
         console.log(response.data.message);
+        toast.success('post created successfully')
         navigate("/");
       } else {
+        toast.error('post creation failed: please check your connection')
         console.log(response.data.message);
       }
     } catch (error) {
+      toast.error("Oops! Something went wrong.");
       console.log("Failed to upload", error);
     } finally {
       setUnderUpload(false);

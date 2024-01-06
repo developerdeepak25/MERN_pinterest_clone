@@ -11,6 +11,7 @@ import SinglePin from "./page/Singlepin/SinglePin";
 import { useFetchUserInfo } from "./customHooks/useFetchUserInfo";
 import UserCreatedPosts from "./components/UserCreatedPosts/UserCreatedPosts";
 import UserSavedPosts from "./components/UserSavedPosts/UserSavedPosts";
+import {Toaster} from 'react-hot-toast'
 
 const App = () => {
   // useEffect(() => {
@@ -49,9 +50,9 @@ const App = () => {
             </PrivateRoute>
           }
         >
-          <Route index element={<UserCreatedPosts/>}/>
-          <Route path="created" element={<UserCreatedPosts/>}/>
-          <Route path="saved" element={<UserSavedPosts/>}/>
+          <Route index element={<UserCreatedPosts />} />
+          <Route path="created" element={<UserCreatedPosts />} />
+          <Route path="saved" element={<UserSavedPosts />} />
         </Route>
         <Route
           path="/pin/:id"
@@ -62,6 +63,7 @@ const App = () => {
           }
         />
       </Routes>
+      <Toaster position="bottom-right" reverseOrder={true} />
     </>
   );
 };

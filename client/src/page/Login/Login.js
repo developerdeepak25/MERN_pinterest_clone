@@ -6,6 +6,7 @@ import InputField from "../../components/Inputs/InputField";
 import FormWrapper from "../../components/formComponents/FormWrapper";
 import PinterestLogo from "../../components/Svgs/PinterestLogo";
 import SubmitButtom from "../../components/SubmitButton/SubmitButtom";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -28,7 +29,6 @@ const SignUp = () => {
   };
 
   const handleSubmit = async () => {
-    // e.preventDefault();
     try {
       setLoading(true);
       const response = await fetch("/login", {
@@ -39,22 +39,29 @@ const SignUp = () => {
         // credentials: "include",
         body: JSON.stringify(formData),
       });
+
       const resJson = await response.json();
+
       if (response.status === 400) {
         setErrorMsg(resJson.error);
+        toast.error(resJson.error);
       }
-      if (response.ok) {
+
+      if (response.status === 200) {
         console.log("login successful", response.status);
         const { id } = resJson;
-        console.log("🚀 ~ file: Login.js:41 ~ handleSubmit ~ token:", id);
+        // console.log("🚀 ~ file: Login.js:41 ~ handleSubmit ~ token:", id);
         dispatch(login(id));
+        toast.success("login successful");
         navigate("/");
       } else {
         // Handle server error
         console.log("login failed with status:", resJson);
       }
+
     } catch (error) {
       console.log("login error: " + error);
+      toast.error('login unsuccessful: something went wrong')
     } finally {
       setLoading(false);
     }

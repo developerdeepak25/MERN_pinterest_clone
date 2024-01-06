@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 
 const SaveButton = ({ pinId, savedBy }) => {
@@ -8,12 +9,12 @@ const SaveButton = ({ pinId, savedBy }) => {
   });
 
   const [saved, setsaved] = useState(false);
-  const [waiting, setwaiting] = useState(false)
+  const [waiting, setwaiting] = useState(false);
 
   console.log(saved);
   const onClickHandler = async () => {
     try {
-      setwaiting(true)
+      setwaiting(true);
       if (saved) {
         const resData = await axios.get(`/image/unsavepost/${pinId}`);
         console.log(
@@ -22,6 +23,7 @@ const SaveButton = ({ pinId, savedBy }) => {
         );
         if (resData.status === 200) {
           setsaved(false);
+          toast.success("post unsaved successfully");
         }
         return;
       }
@@ -33,11 +35,12 @@ const SaveButton = ({ pinId, savedBy }) => {
       );
       if (resData.status === 200) {
         setsaved(true);
+        toast.success("post saved successfully");
       }
     } catch (error) {
       console.log(error);
-    }finally{
-      setwaiting(false)
+    } finally {
+      setwaiting(false);
     }
   };
   useEffect(() => {
@@ -47,8 +50,12 @@ const SaveButton = ({ pinId, savedBy }) => {
 
   return (
     <>
-    {/* mentioned classed are in index.scss */}
-      <div className={`pin-prime-btn ${saved && "saved"} ${waiting?'waiting':''}`}> 
+      {/* mentioned classed are in index.scss */}
+      <div
+        className={`pin-prime-btn ${saved && "saved"} ${
+          waiting ? "waiting" : ""
+        }`}
+      >
         <button onClick={onClickHandler}>{saved ? "saved" : "save"}</button>
       </div>
     </>
