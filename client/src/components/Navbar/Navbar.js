@@ -56,7 +56,7 @@ const Navbar = () => {
               <div className="login-route log-button">Login</div>
             </NavLink>
           )}
-          <NavLink to="/profile">
+          <NavLink to="/profile/created">
             <div className="profile_pic p-2.5 aspect-square w-12 hover:bg-[#0000000f] rounded-full flex">
               {userPic ? (
                 <ProfileImg

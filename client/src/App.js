@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "./page/Login/Login";
 import Home from "./page/Home/Home";
@@ -9,6 +9,8 @@ import Create from "./page/Create/Create";
 import Profile from "./page/Profile/Profile";
 import SinglePin from "./page/Singlepin/SinglePin";
 import { useFetchUserInfo } from "./customHooks/useFetchUserInfo";
+import UserCreatedPosts from "./components/UserCreatedPosts/UserCreatedPosts";
+import UserSavedPosts from "./components/UserSavedPosts/UserSavedPosts";
 
 const App = () => {
   // useEffect(() => {
@@ -46,7 +48,11 @@ const App = () => {
               <Profile />
             </PrivateRoute>
           }
-        />
+        >
+          <Route index element={<UserCreatedPosts/>}/>
+          <Route path="created" element={<UserCreatedPosts/>}/>
+          <Route path="saved" element={<UserSavedPosts/>}/>
+        </Route>
         <Route
           path="/pin/:id"
           element={

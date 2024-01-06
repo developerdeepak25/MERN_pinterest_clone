@@ -1,14 +1,18 @@
-
-
-.catgry-link.active{
-    &::after{
-        content: '';
-        position: absolute;
-        bottom: -2px;
-        left: 8px;
-        height: 3px;
-        background-color: black;
-        width: calc(100% - 16px);
-        border-radius: 2px;
+.categpry-selector {
+  a {
+    &.active {
+      h3 {
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -2px;
+          left: 8px;
+          height: 3px;
+          background-color: black;
+          width: calc(100% - 16px);
+          border-radius: 2px;
+        }
+      }
     }
+  }
 }

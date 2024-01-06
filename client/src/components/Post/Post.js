@@ -2,7 +2,6 @@ import React from "react";
 import "./Posts.scss";
 import { NavLink } from "react-router-dom";
 import SuspenseImg from "../SuspenseImg/SuspenseImg";
-import DeleteSvg from "../Svgs/DeleteSvg";
 import DeletePost from "./DeletePost";
 import ProfileImg from "../ProfileImg/ProfileImg";
 
