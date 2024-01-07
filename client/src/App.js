@@ -1,17 +1,34 @@
-import React from "react";
+import React, { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import Login from "./page/Login/Login";
-import Home from "./page/Home/Home";
-import SignUp from "./page/SignUp/SignUp";
-import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import Navbar from "./components/Navbar/Navbar";
-import Create from "./page/Create/Create";
-import Profile from "./page/Profile/Profile";
-import SinglePin from "./page/Singlepin/SinglePin";
 import { useFetchUserInfo } from "./customHooks/useFetchUserInfo";
-import UserCreatedPosts from "./components/UserCreatedPosts/UserCreatedPosts";
-import UserSavedPosts from "./components/UserSavedPosts/UserSavedPosts";
-import {Toaster} from 'react-hot-toast'
+import { Toaster } from "react-hot-toast";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+
+import Navbar from "./components/Navbar/Navbar";
+import Login from "./page/Login/Login";
+import SignUp from "./page/SignUp/SignUp";
+import SuspenseLoader from "./components/SuspenseLoader/SuspenseLoader";
+
+const UserCreatedPosts = lazy(() =>
+  import("./components/UserCreatedPosts/UserCreatedPosts")
+);
+const UserSavedPosts = lazy(() =>
+  import("./components/UserSavedPosts/UserSavedPosts")
+);
+const Home = lazy(() => import("./page/Home/Home"));
+const Create = lazy(() => import("./page/Create/Create"));
+const Profile = lazy(() => import("./page/Profile/Profile"));
+// const SinglePin = lazy(() => import("./page/Singlepin/SinglePin"));
+
+const SinglePin = lazy(() =>
+  wait().then(() => import("./page/Singlepin/SinglePin"))
+);
+
+function wait() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve(), 300000);
+  });
+}
 
 const App = () => {
   // useEffect(() => {
@@ -50,9 +67,30 @@ const App = () => {
             </PrivateRoute>
           }
         >
-          <Route index element={<UserCreatedPosts />} />
-          <Route path="created" element={<UserCreatedPosts />} />
-          <Route path="saved" element={<UserSavedPosts />} />
+          <Route
+            index
+            element={
+              <SuspenseLoader>
+                <UserCreatedPosts />
+              </SuspenseLoader>
+            }
+          />
+          <Route
+            path="created"
+            element={
+              <SuspenseLoader>
+                <UserCreatedPosts />
+              </SuspenseLoader>
+            }
+          />
+          <Route
+            path="saved"
+            element={
+              <SuspenseLoader>
+                <UserSavedPosts />
+              </SuspenseLoader>
+            }
+          />
         </Route>
         <Route
           path="/pin/:id"
