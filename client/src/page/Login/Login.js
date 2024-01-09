@@ -7,6 +7,7 @@ import FormWrapper from "../../components/formComponents/FormWrapper";
 import PinterestLogo from "../../components/Svgs/PinterestLogo";
 import SubmitButtom from "../../components/SubmitButton/SubmitButtom";
 import toast from "react-hot-toast";
+import { useFormValidation } from "../../customHooks/useFormValidation";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -17,8 +18,8 @@ const SignUp = () => {
     email: "",
     password: "",
   });
-  const [buttonDisabled, setButtonDisabled] = useState(false);
-  const [errorMsg, setErrorMsg] = useState(null);
+
+  const [submitDisabled, errorMsg, setErrorMsg] = useFormValidation(null, formData);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,6 +30,10 @@ const SignUp = () => {
   };
 
   const handleSubmit = async () => {
+    if (submitDisabled) {
+      setErrorMsg("All fields are mandatory*");
+      return;
+    }
     try {
       setLoading(true);
       const response = await fetch("/login", {
@@ -43,7 +48,7 @@ const SignUp = () => {
       const resJson = await response.json();
 
       if (response.status === 400) {
-        setErrorMsg(resJson.error);
+        // setErrorMsg(resJson.error);
         toast.error(resJson.error);
       }
 
@@ -58,45 +63,16 @@ const SignUp = () => {
         // Handle server error
         console.log("login failed with status:", resJson);
       }
-
     } catch (error) {
       console.log("login error: " + error);
-      toast.error('login unsuccessful: something went wrong')
+      toast.error("login unsuccessful: something went wrong");
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(() => {
-    if (formData.email.length > 0 && formData.password.length > 0) {
-      setButtonDisabled(false);
-    } else {
-      setButtonDisabled(true);
-    }
-  }, [formData]);
-
   return (
     <>
-      {/* <label >
-        Email:
-        <input
-          type="email"
-          name="email"
-          // value={formData.email}
-          onChange={handleChange}
-          required
-        />
-      </label> */}
-      {/* <label>
-        Password:
-        <input
-          type="password"
-          name="password"
-          // value={formData.password}
-          onChange={handleChange}
-          required
-        />
-      </label> */}
       <div className="minus-nav-100vh bg-slate-50 flex flex-col">
         {/* <div className="h-full"> */}
         <FormWrapper>
@@ -130,7 +106,6 @@ const SignUp = () => {
               )}
               <SubmitButtom
                 onClick={handleSubmit}
-                disabled={buttonDisabled}
                 label={"login "}
                 loading={loading}
               />

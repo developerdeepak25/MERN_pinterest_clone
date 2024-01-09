@@ -5,6 +5,7 @@ import SubmitButtom from "../../components/SubmitButton/SubmitButtom";
 import PinterestLogo from "../../components/Svgs/PinterestLogo";
 import FormWrapper from "../../components/formComponents/FormWrapper";
 import toast from "react-hot-toast";
+import { useFormValidation } from "../../customHooks/useFormValidation";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const SignUp = () => {
     password: "",
   });
 
-  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [submitDisabled, errorMsg, setErrorMsg] = useFormValidation(null, formData);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,6 +30,11 @@ const SignUp = () => {
 
   const handleSubmit = async () => {
     // e.preventDefault();
+    if (submitDisabled) {
+      setErrorMsg("All fields are mandatory*");
+      return;
+    }
+
     try {
       setLoading(true);
       // const response = await fetch("http://localhost:5000/signup", {
@@ -56,53 +62,8 @@ const SignUp = () => {
     }
   };
 
-  useEffect(() => {
-    if (
-      formData.email.length > 0 &&
-      formData.password.length > 0 &&
-      formData.username.length > 0
-    ) {
-      setButtonDisabled(false);
-    } else {
-      setButtonDisabled(true);
-    }
-  }, [formData]);
-
   return (
     <>
-      {/* <form onSubmit={handleSubmit}> */}
-      {/* <label>
-        Username:
-        <input
-          type="text"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-          required
-        />
-      </label> */}
-
-      {/* <label>
-        Email:
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-      </label> */}
-
-      {/* <label>
-        Password:
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-      </label> */}
       <div className="minus-nav-100vh bg-slate-50 flex flex-col">
         {/* <div className="h-full"> */}
         <FormWrapper>
@@ -135,23 +96,25 @@ const SignUp = () => {
                 id={"user-pass"}
                 handleChange={handleChange}
               />
+              {errorMsg && (
+                <p className="text-[#d93025] text-sm flex items-start gap-2 mx-1">
+                  {errorMsg}
+                </p>
+              )}
 
               <SubmitButtom
                 onClick={handleSubmit}
-                disabled={buttonDisabled}
+                // disabled={submitDisabled}
                 label={"sign up"}
                 loading={loading}
               />
             </div>
-            {/* </form> */}
             <div className=" text-sm mt-4">
               <span>Already signed in? </span>
               <NavLink to={"/login"}>Go to login.</NavLink>
             </div>
           </div>
         </FormWrapper>
-
-        {/* </div> */}
       </div>
     </>
   );
