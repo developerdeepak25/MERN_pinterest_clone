@@ -18,17 +18,17 @@ const UserSavedPosts = lazy(() =>
 const Home = lazy(() => import("./page/Home/Home"));
 const Create = lazy(() => import("./page/Create/Create"));
 const Profile = lazy(() => import("./page/Profile/Profile"));
-// const SinglePin = lazy(() => import("./page/Singlepin/SinglePin"));
+const SinglePin = lazy(() => import("./page/Singlepin/SinglePin"));
 
-const SinglePin = lazy(() =>
-  wait().then(() => import("./page/Singlepin/SinglePin"))
-);
+// const SinglePin = lazy(() =>
+//   wait().then(() => import("./page/Singlepin/SinglePin"))
+// );
 
-function wait() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => resolve(), 300000);
-  });
-}
+// function wait() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => resolve(), 300000);
+//   });
+// }
 
 const App = () => {
   // useEffect(() => {
