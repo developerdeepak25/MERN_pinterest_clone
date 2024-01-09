@@ -9,7 +9,10 @@ const UserCreatedPosts = () => {
   });
   return (
     <div className="user-created-posts">
-      <PostsLayout>
+      <PostsLayout
+        postsCount={posts.length}
+        fallback={"You haven't created any posts yet."}
+      >
         {posts &&
           posts.map((post, i) => {
             return (

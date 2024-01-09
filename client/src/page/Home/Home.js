@@ -5,7 +5,7 @@ import PostsLayout from "../../components/PostsGrid/PostsLayout";
 
 const Home = () => {
   // const [userData, setUserData] = useState("");
-  const [posts, setPosts] = useState();
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const getDataFromServer = async () => {
@@ -33,7 +33,11 @@ const Home = () => {
       {/* <h2>{userData.email}</h2> */}
       {/* <h1>this is the home component</h1> */}
       <div className="posts-container mt-8">
-        <PostsLayout>
+        <PostsLayout
+          postsCount={posts.length}
+          fallback={"Nothing to see yet."}
+        >
+          {" "}
           {posts &&
             posts.map((post, i) => {
               return <Post data={post} key={i} />;

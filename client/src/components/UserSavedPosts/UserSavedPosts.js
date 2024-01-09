@@ -9,7 +9,10 @@ const UserSavedPosts = () => {
   });
   return (
     <div className="user-created-posts">
-      <PostsLayout>
+      <PostsLayout
+        postsCount={savedPosts.length}
+        fallback={"You haven't saved any posts yet."}
+      >
         {savedPosts &&
           savedPosts.map((post, i) => {
             return <Post data={post} key={i} />;
