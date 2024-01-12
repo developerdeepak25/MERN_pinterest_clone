@@ -16,8 +16,8 @@ server/node_modules/
 pic_uploads/*
 uploads/*
 
-!pic_uploads/.gitkeep 
-!uploads/.gitkeep 
+# !pic_uploads/.gitkeep 
+# !uploads/.gitkeep 
 
 # testing
 /coverage
