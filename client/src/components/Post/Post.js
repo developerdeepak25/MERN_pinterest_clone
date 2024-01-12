@@ -27,7 +27,7 @@ const Post = ({ data, userInfo, type }) => {
 
       <div className="creator-container h-full absolute top-0 left-0 right-0 pointer-events-none ">
         {/* <div className="h-full"> */}
-        <div className="absolute top-0 left-0 right-0 bottom-0 p-4 flex flex-col ">
+        <div className="absolute top-0 left-0 right-0 bottom-0 p-4 flex flex-col max-sm:p-2">
           {/* {user.username && ( */}
           <div className="creator-profile flex  w-full mt-auto  items-center justify-between">
             <div

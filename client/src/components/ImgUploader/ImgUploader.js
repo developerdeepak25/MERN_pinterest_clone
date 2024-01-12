@@ -41,8 +41,10 @@ const ImgUploader = ({ setFile }) => {
   return (
     <>
       <div
-        className={`img-Uploader bg-[#e9e9e9]  w-[23rem] ${
-          imageHeight && selectedFile ? `h-[${imageHeight}]` : "h-[27rem]"
+        className={`img-Uploader bg-[#e9e9e9]  w-[23rem] max-sm:w-auto ${
+          imageHeight && selectedFile
+            ? `h-[${imageHeight}]`
+            : "h-[27rem] max-sm:h-[22rem]"
         }  rounded-3xl border-dashed border-[#dadada]  hover:border-[#929292] border-2 cursor-pointer overflow-hidden relative`}
         onClick={selectfile}
         onDrop={onDrop}
