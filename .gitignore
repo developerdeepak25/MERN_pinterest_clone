@@ -12,6 +12,13 @@ server/node_modules/
 /.pnp
 .pnp.js
 
+#Ignore uploads in the server directory
+pic_uploads/*
+uploads/*
+
+!pic_uploads/.gitkeep 
+!uploads/.gitkeep 
+
 # testing
 /coverage
 

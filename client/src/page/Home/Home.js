@@ -32,11 +32,8 @@ const Home = () => {
     <>
       {/* <h2>{userData.email}</h2> */}
       {/* <h1>this is the home component</h1> */}
-      <div className="posts-container mt-8">
-        <PostsLayout
-          postsCount={posts.length}
-          fallback={"Nothing to see yet."}
-        >
+      <div className="posts-container pt-8 minus-nav-100vh ">
+        <PostsLayout postsCount={posts.length} fallback={"Nothing to see yet."}>
           {" "}
           {posts &&
             posts.map((post, i) => {

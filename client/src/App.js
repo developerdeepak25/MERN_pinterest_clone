@@ -101,7 +101,10 @@ const App = () => {
           }
         />
       </Routes>
-      <Toaster position="bottom-right" reverseOrder={true} />
+      <Toaster
+        position={window.innerWidth > 640 ? "bottom-right" : "top-center"}
+        reverseOrder={true}
+      />
     </>
   );
 };
