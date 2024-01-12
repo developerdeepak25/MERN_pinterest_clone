@@ -14,10 +14,10 @@ server/node_modules/
 
 #Ignore uploads in the server directory
 pic_uploads/*
-uploads/*
+!pic_uploads/.gitkeep 
 
-# !pic_uploads/.gitkeep 
-# !uploads/.gitkeep 
+uploads/*
+!uploads/.gitkeep 
 
 # testing
 /coverage
