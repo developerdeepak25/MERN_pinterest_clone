@@ -86,11 +86,11 @@ const Create = () => {
     >
       <div className="pin-creator bg-white  rounded-2xl  mx-auto max-sm:mx-0 mt-12 max-sm:mt-0 max-sm:w-full max-sm:h-auto pb-20 max-sm:flex max-sm:flex-col max-sm:rounded-none">
         {/* <FileUpload/> */}
-        <div className="pin-form  m-12 max-sm:m-5 flex gap-10 max-sm:flex-col ">
+        <div className="pin-form  m-12 max-sm:m-5 flex gap-10 max-sm:gap-5 max-sm:flex-col ">
           <div className="upload-field">
             <ImgUploader setFile={(selectedFile) => setFile(selectedFile)} />
           </div>
-          <div className="pin-detls-inputs mt-1 w-[36rem] max-sm:w-auto gap-6 flex flex-col">
+          <div className="pin-detls-inputs mt-1 w-[36rem] max-sm:w-auto gap-6 flex flex-col max-sm:gap-3">
             {/* <label
               htmlFor="pinTitle"
               className="flex flex-col text-[#111111] text-sm gap-2"

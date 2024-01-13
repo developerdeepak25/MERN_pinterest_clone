@@ -14,7 +14,7 @@ const Post = ({ data, userInfo, type }) => {
   
 
   return (
-    <div className="post-container rounded-xl overflow-hidden mb-4 relative">
+    <div className="post-container rounded-xl overflow-hidden mb-4 relative max-sm:mb-2">
       <NavLink to={`/pin/${_id}`} className={"relative "}>
         <SuspenseImg
           className="w-full"
