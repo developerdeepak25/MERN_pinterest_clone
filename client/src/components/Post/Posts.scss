@@ -1,11 +1,14 @@
 .post-container{
     
-    &:hover .creator-container{
-        opacity: 1;
-    }
     .creator-container{
         background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.40) 76.8%, rgba(0, 0, 0, 0.60) 87.72%, rgba(0, 0, 0, 0.65) 100%);
         opacity: 0;
         transition: .2s;
+          @media (max-width: 680px) {
+            opacity: 1;
+          }
+    }
+    &:hover .creator-container{
+        opacity: 1;
     }
 }
