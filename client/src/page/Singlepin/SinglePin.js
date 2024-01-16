@@ -23,7 +23,7 @@ const SinglePin = () => {
     const getDataFromServer = async () => {
       try {
         const resData = await axios.get(
-          `${process.env.API_URL}/image/getpostdata/${id}`
+          `${process.env.REACT_APP_API_URL}/image/getpostdata/${id}`
         );
         console.log(
           "🚀 ~ file: Home.js:10 ~ getDataFromServer ~ resData:",

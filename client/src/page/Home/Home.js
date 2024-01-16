@@ -11,7 +11,7 @@ const Home = () => {
     const getDataFromServer = async () => {
       try {
         const resData = await axios.get(
-          `${process.env.API_URL}/image/getalldata`
+          `${process.env.REACT_APP_API_URL}/image/getalldata`
         );
         console.log(
           "🚀 ~ file: Home.js:10 ~ getDataFromServer ~ resData:",

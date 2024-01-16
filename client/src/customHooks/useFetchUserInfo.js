@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateState } from "../store/slices/UserSlice";
+import AxiosInstance from "../AxiosInstance/AxiosInstance";
 
 export const useFetchUserInfo = () => {
   const { isAuthenticated } = useSelector((state) => {
@@ -11,7 +12,9 @@ export const useFetchUserInfo = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resData = await axios.get("/image/getuserprofile");
+        const resData = await AxiosInstance.get(
+          `${process.env.REACT_APP_API_URL}/image/getuserprofile`
+        );
         const { data } = resData.data;
         console.log(
           "useFetchUserInfo",

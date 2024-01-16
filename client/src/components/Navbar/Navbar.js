@@ -22,7 +22,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const logoutHandler = async () => {
     try {
-      const response = await fetch(`${process.env.API_URL}/logout`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/logout`, {
         method: "get",
       });
       if (response.status === 200) {

@@ -12,7 +12,7 @@ const DeletePost = ({ id }) => {
     console.log("inside deletePost function");
     try {
       const resData = await axios.delete(
-        `${process.env.API_URL}/image/deletepost/${id}`
+        `${process.env.REACT_APP_API_URL}/image/deletepost/${id}`
       );
       console.log(
         "🚀 ~ file: Home.js:10 ~ getDataFromServer ~ resData:",
