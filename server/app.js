@@ -12,7 +12,7 @@ var cookieParser = require("cookie-parser");
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "https://mern-pinterest-clone.vercel.app",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
 };
