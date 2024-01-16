@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Profile.scss";
-import axios from "axios";
 import UserPicUploader from "../../components/UserPicUploader/UserPicUploader";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -10,6 +9,7 @@ import {
 } from "../../store/slices/UserSlice";
 import ProfileImg from "../../components/ProfileImg/ProfileImg";
 import { NavLink, Outlet } from "react-router-dom";
+import AxiosInstance from "../../AxiosInstance/AxiosInstance";
 
 const Profile = () => {
   // const [userData, setUserData] = useState("");
@@ -25,8 +25,8 @@ const Profile = () => {
   useEffect(() => {
     const getDataFromServer = async () => {
       try {
-        await axios
-          .get(`${process.env.REACT_APP_API_URL}/image/getuserposts`)
+        await AxiosInstance
+          .get(`/image/getuserposts`)
           .then((res) => {
             const { data } = res.data;
             const { posts } = data;
@@ -50,8 +50,8 @@ const Profile = () => {
     const getDataFromServer = async () => {
       try {
         // const resData = await axios.get("/image/getsavedposts");
-        await axios
-          .get(`${process.env.REACT_APP_API_URL}/image/getsavedposts`)
+        await AxiosInstance
+          .get(`/image/getsavedposts`)
           .then((res) => {
             const { data } = res.data;
             // console.log("savedpost data form Db", data);

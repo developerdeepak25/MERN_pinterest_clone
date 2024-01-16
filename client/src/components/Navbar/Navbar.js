@@ -11,6 +11,7 @@ import HomeSvg from "../Svgs/HomeSvg";
 import AddSvg from "../Svgs/AddSvg";
 import LogoutSvg from "../Svgs/LogoutSvg";
 import LoginSvg from "../Svgs/LoginSvg";
+import AxiosInstance from "../../AxiosInstance/AxiosInstance";
 
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
@@ -22,9 +23,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const logoutHandler = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/logout`, {
-        method: "get",
-      });
+      const response = await AxiosInstance.get(`/logout`);
       if (response.status === 200) {
         toast.success("logout successful");
         dispatch(logout());

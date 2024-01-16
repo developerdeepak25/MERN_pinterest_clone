@@ -1,7 +1,7 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
+import AxiosInstance from '../../AxiosInstance/AxiosInstance'
 
 const SaveButton = ({ pinId, savedBy }) => {
   const { userId } = useSelector((state) => {
@@ -16,8 +16,8 @@ const SaveButton = ({ pinId, savedBy }) => {
     try {
       setwaiting(true);
       if (saved) {
-        const resData = await axios.get(
-          `${process.env.REACT_APP_API_URL}/image/unsavepost/${pinId}`
+        const resData = await AxiosInstance.get(
+          `/image/unsavepost/${pinId}`
         );
         console.log(
           "🚀 ~ file: SaveButton.js:9 ~ onClickHandler ~ resData:",
@@ -30,8 +30,8 @@ const SaveButton = ({ pinId, savedBy }) => {
         return;
       }
 
-      const resData = await axios.get(
-        `${process.env.REACT_APP_API_URL}/image/savepost/${pinId}`
+      const resData = await AxiosInstance.get(
+        `/image/savepost/${pinId}`
       );
       console.log(
         "🚀 ~ file: SaveButton.js:9 ~ onClickHandler ~ resData:",

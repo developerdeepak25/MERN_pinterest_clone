@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import axios from "axios";
 import "./Create.scss";
 import ImgUploader from "../../components/ImgUploader/ImgUploader";
 import ErrorSvg from "../../components/Svgs/ErrorSvg";
 import { useNavigate } from "react-router-dom";
 import InputField from "../../components/Inputs/InputField";
 import toast from "react-hot-toast";
+import AxiosInstance from "../../AxiosInstance/AxiosInstance";
 
 const Create = () => {
   const [file, setFile] = useState(null);
@@ -48,8 +48,8 @@ const Create = () => {
       formData.append("pinTitle", fileMetadata.pinTitle);
       formData.append("pinDescription", fileMetadata.pinDescription);
 
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/image/upload`,
+      const response = await AxiosInstance.post(
+        `/image/upload`,
         formData
       );
       // const resJson = await response.json();

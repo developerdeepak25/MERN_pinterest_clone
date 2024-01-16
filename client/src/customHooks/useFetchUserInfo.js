@@ -13,7 +13,7 @@ export const useFetchUserInfo = () => {
     const fetchData = async () => {
       try {
         const resData = await AxiosInstance.get(
-          `${process.env.REACT_APP_API_URL}/image/getuserprofile`
+          `/image/getuserprofile`
         );
         const { data } = resData.data;
         console.log(

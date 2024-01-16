@@ -1,7 +1,7 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Post from "../../components/Post/Post";
 import PostsLayout from "../../components/PostsGrid/PostsLayout";
+import AxiosInstance from "../../AxiosInstance/AxiosInstance";
 
 const Home = () => {
   // const [userData, setUserData] = useState("");
@@ -10,8 +10,8 @@ const Home = () => {
   useEffect(() => {
     const getDataFromServer = async () => {
       try {
-        const resData = await axios.get(
-          `${process.env.REACT_APP_API_URL}/image/getalldata`
+        const resData = await AxiosInstance.get(
+          `/image/getalldata`
         );
         console.log(
           "🚀 ~ file: Home.js:10 ~ getDataFromServer ~ resData:",

@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import LeftArrow from "../../components/Svgs/LeftArrow";
@@ -6,6 +5,7 @@ import "./SinglePin.scss";
 import SaveButton from "../../components/SinglePinComponents/SaveButton";
 import SuspenseImg from "../../components/SuspenseImg/SuspenseImg";
 import ProfileImg from "../../components/ProfileImg/ProfileImg";
+import AxiosInstance from "../../AxiosInstance/AxiosInstance";
 
 const SinglePin = () => {
   const [postData, setPostData] = useState({});
@@ -22,8 +22,8 @@ const SinglePin = () => {
   useEffect(() => {
     const getDataFromServer = async () => {
       try {
-        const resData = await axios.get(
-          `${process.env.REACT_APP_API_URL}/image/getpostdata/${id}`
+        const resData = await AxiosInstance.get(
+          `/image/getpostdata/${id}`
         );
         console.log(
           "🚀 ~ file: Home.js:10 ~ getDataFromServer ~ resData:",

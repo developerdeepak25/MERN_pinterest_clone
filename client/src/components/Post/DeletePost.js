@@ -1,9 +1,9 @@
 import React from "react";
 import DeleteSvg from "../Svgs/DeleteSvg";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { deleteStatePost } from "../../store/slices/UserSlice";
 import toast from "react-hot-toast";
+import AxiosInstance from "../../AxiosInstance/AxiosInstance";
 
 const DeletePost = ({ id }) => {
   const dispatch = useDispatch()
@@ -11,8 +11,8 @@ const DeletePost = ({ id }) => {
     event.stopPropagation();
     console.log("inside deletePost function");
     try {
-      const resData = await axios.delete(
-        `${process.env.REACT_APP_API_URL}/image/deletepost/${id}`
+      const resData = await AxiosInstance.delete(
+        `/image/deletepost/${id}`
       );
       console.log(
         "🚀 ~ file: Home.js:10 ~ getDataFromServer ~ resData:",
