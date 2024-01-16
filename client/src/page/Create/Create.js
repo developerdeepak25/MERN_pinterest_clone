@@ -48,7 +48,7 @@ const Create = () => {
       formData.append("pinTitle", fileMetadata.pinTitle);
       formData.append("pinDescription", fileMetadata.pinDescription);
 
-      const response = await axios.post("image/upload", formData);
+      const response = await axios.post(`${process.env.API_URL}/image/upload`, formData);
       // const resJson = await response.json();
 
       if (response.status === 200) {

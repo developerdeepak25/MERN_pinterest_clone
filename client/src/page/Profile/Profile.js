@@ -26,7 +26,7 @@ const Profile = () => {
     const getDataFromServer = async () => {
       try {
         await axios
-          .get("/image/getuserposts")
+          .get(`${process.env.API_URL}/image/getuserposts`)
           .then((res) => {
             const { data } = res.data;
             const { posts } = data;
@@ -51,7 +51,7 @@ const Profile = () => {
       try {
         // const resData = await axios.get("/image/getsavedposts");
         await axios
-          .get("/image/getsavedposts")
+          .get(`${process.env.API_URL}/image/getsavedposts`)
           .then((res) => {
             const { data } = res.data;
             // console.log("savedpost data form Db", data);

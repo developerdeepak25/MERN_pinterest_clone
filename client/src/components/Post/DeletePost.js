@@ -11,7 +11,9 @@ const DeletePost = ({ id }) => {
     event.stopPropagation();
     console.log("inside deletePost function");
     try {
-      const resData = await axios.delete(`/image/deletepost/${id}`);
+      const resData = await axios.delete(
+        `${process.env.API_URL}/image/deletepost/${id}`
+      );
       console.log(
         "🚀 ~ file: Home.js:10 ~ getDataFromServer ~ resData:",
         resData

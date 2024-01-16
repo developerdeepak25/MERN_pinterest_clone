@@ -22,7 +22,9 @@ const SinglePin = () => {
   useEffect(() => {
     const getDataFromServer = async () => {
       try {
-        const resData = await axios.get(`/image/getpostdata/${id}`);
+        const resData = await axios.get(
+          `${process.env.API_URL}/image/getpostdata/${id}`
+        );
         console.log(
           "🚀 ~ file: Home.js:10 ~ getDataFromServer ~ resData:",
           resData

@@ -3,7 +3,7 @@
 const express = require("express");
 // const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-// const cors = require("cors");
+const cors = require("cors");
 const path = require("path");
 const passport = require("passport");
 var cookieParser = require("cookie-parser");
@@ -11,14 +11,14 @@ var cookieParser = require("cookie-parser");
 
 const app = express();
 
-// var corsOptions = {
-//   origin: "http://localhost:3000",
-//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//   credentials: true,
-// };
+var corsOptions = {
+  origin: "http://localhost:3000",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+};
 
 // // Middleware
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(cookieParser());
 
 app.use(bodyParser.json());

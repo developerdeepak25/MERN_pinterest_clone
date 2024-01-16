@@ -16,7 +16,9 @@ const SaveButton = ({ pinId, savedBy }) => {
     try {
       setwaiting(true);
       if (saved) {
-        const resData = await axios.get(`/image/unsavepost/${pinId}`);
+        const resData = await axios.get(
+          `${process.env.API_URL}/image/unsavepost/${pinId}`
+        );
         console.log(
           "🚀 ~ file: SaveButton.js:9 ~ onClickHandler ~ resData:",
           resData
@@ -28,7 +30,9 @@ const SaveButton = ({ pinId, savedBy }) => {
         return;
       }
 
-      const resData = await axios.get(`/image/savepost/${pinId}`);
+      const resData = await axios.get(
+        `${process.env.API_URL}/image/savepost/${pinId}`
+      );
       console.log(
         "🚀 ~ file: SaveButton.js:9 ~ onClickHandler ~ resData:",
         resData
