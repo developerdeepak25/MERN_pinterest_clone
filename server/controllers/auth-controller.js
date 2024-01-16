@@ -55,8 +55,10 @@ const login = async (req, res) => {
       .cookie("token", token, {
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         httpOnly: true,
+        secure: false,
+        sameSite: "None",
       })
-      .json({ message: "user login successfully", id: user._id});
+      .json({ message: "user login successfully", id: user._id });
     // console.log(req.body);
   } catch (error) {
     res.status(500).json({ message: "Error: " + error.message });
