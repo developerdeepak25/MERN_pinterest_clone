@@ -49,12 +49,12 @@ const SuspenseImg = ({ src, height, alt, className, fileName }) => {
     <div>
       {loading && <ImgPlaceHolder height={height} />}
       {/* {src !== "/uploads/undefined" && ( */}
-      {(fileName && src ) && (
+      {fileName && src && (
         <img
-          src={src}
+          src={process.env.REACT_APP_API_URL + src}
           alt={alt}
           onLoad={handleImageLoad}
-          className={`${className}  ${loading ? 'h-0':'h-auto'}`}
+          className={`${className}  ${loading ? "h-0" : "h-auto"}`}
         />
       )}
     </div>

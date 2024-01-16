@@ -71,6 +71,8 @@ const logout = async (req, res) => {
       .cookie("token", "", {
         expires: new Date(0),
         httpOnly: true,
+        secure: true,
+        sameSite: "None",
       })
       .status(200)
       .json({ message: "user logout  successfully" });

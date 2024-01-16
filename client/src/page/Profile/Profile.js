@@ -25,8 +25,7 @@ const Profile = () => {
   useEffect(() => {
     const getDataFromServer = async () => {
       try {
-        await AxiosInstance
-          .get(`/image/getuserposts`)
+        await AxiosInstance.get(`/image/getuserposts`)
           .then((res) => {
             const { data } = res.data;
             const { posts } = data;
@@ -50,8 +49,7 @@ const Profile = () => {
     const getDataFromServer = async () => {
       try {
         // const resData = await axios.get("/image/getsavedposts");
-        await AxiosInstance
-          .get(`/image/getsavedposts`)
+        await AxiosInstance.get(`/image/getsavedposts`)
           .then((res) => {
             const { data } = res.data;
             // console.log("savedpost data form Db", data);
@@ -87,13 +85,18 @@ const Profile = () => {
           <div className="relative profile-pic-main mb-5">
             <div className="  w-32 aspect-square rounded-full overflow-hidden flex justify-center">
               {tempPic ? (
-                <ProfileImg src={URL.createObjectURL(tempPic)} alt="pic" />
+                <ProfileImg
+                  src={URL.createObjectURL(tempPic)}
+                  alt="pic"
+                  absolute={true}
+                />
               ) : (
                 <ProfileImg
                   src={
-                    userPic
-                      ? `/pic_uploads/${userPic}`
-                      : require("../../image/icons/blank_profile.jpg")
+                    userPic && `/pic_uploads/${userPic}`
+                    // userPic
+                    //   ? `/pic_uploads/${userPic}`
+                    //   : require("../../image/icons/blank_profile.jpg")
                   }
                   alt="pic"
                 />

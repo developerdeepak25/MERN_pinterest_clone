@@ -3,6 +3,7 @@ import EditSvg from "../Svgs/EditSvg";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { updateState } from "../../store/slices/UserSlice";
+import AxiosInstance from "../../AxiosInstance/AxiosInstance";
 
 const UserPicUploader = ({ setTempPic }) => {
   const state = useSelector((state) => {
@@ -25,7 +26,7 @@ const UserPicUploader = ({ setTempPic }) => {
       formData.append("upload_pic_file", File);
 
       // const resData = await fetch("/image/getdata");
-      const response = await axios.post("/image/uploaduserpic", formData);
+      const response = await AxiosInstance.post("/image/uploaduserpic", formData);
       if (response.status === 200) {
         // console.log("Upload.js", resJson);
         if (response.data.userPic) {

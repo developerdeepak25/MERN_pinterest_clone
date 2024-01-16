@@ -152,19 +152,20 @@ const ProfilePic = () => {
   });
   return (
     <div className="profile_pic p-2.5 aspect-square w-12 hover:bg-[#0000000f]  rounded-full flex">
-      {userPic ? (
+      {
         <ProfileImg
           className="rounded-full"
-          src={`/pic_uploads/${userPic}`}
+          src={userPic && `/pic_uploads/${userPic}`}
           alt={username + "picture"}
         />
-      ) : (
+      }
+      {/* ) : (
         <ProfileImg
           className="rounded-full"
           src={require("../../image/icons/blank_profile.jpg")}
           alt={username + "picture"}
         />
-      )}
+      ) */}
     </div>
   );
 };
