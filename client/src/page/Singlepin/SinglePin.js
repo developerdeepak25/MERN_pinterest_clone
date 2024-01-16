@@ -76,18 +76,23 @@ const SinglePin = () => {
               {/* same as post compo creator profile but text-black , font-weight , */}
               <div className="creator-profile flex  w-full items-center mt-auto gap-2">
                 <div className="creator-image rounded-full w-9 aspect-square overflow-hidden opacity-80 shrink-0">
-                  {user?.userPic ? (
+                   {
+                    <ProfileImg
+                      src={user?.userPic && `/pic_uploads/${user.userPic}`}
+                      alt={user?.username}
+                    />}
+                  {/* {user?.userPic && (
                     <ProfileImg
                       src={`/pic_uploads/${user.userPic}`}
                       alt={user.username}
-                    />
-                  ) : (
+                    />)} */}
+                  {/* ) : (
                     <ProfileImg
                       src={require("../../image/icons/blank_profile.jpg")}
                       alt={user?.username}
                       className="w-full"
                     />
-                  )}
+                  )} */}
                 </div>
                 <div className="creator-name font-medium  opacity-80  capitalize whitespace-nowrap overflow-hidden text-ellipsis">
                   {user?.username}

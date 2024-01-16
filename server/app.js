@@ -13,6 +13,7 @@ const app = express();
 
 var corsOptions = {
   origin: "https://mern-pinterest-clone.vercel.app",
+  // origin: "http://localhost:3000",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
 };

@@ -11,7 +11,6 @@ const Post = ({ data, userInfo, type }) => {
   const username = userInfo?.username || user?.username;
   const userPic = userInfo?.userPic || user?.userPic;
   console.log(username, data);
-  
 
   return (
     <div className="post-container rounded-xl overflow-hidden mb-4 relative max-sm:mb-2">
@@ -36,18 +35,24 @@ const Post = ({ data, userInfo, type }) => {
               }`}
             >
               <div className="creator-image rounded-full w-7 aspect-square overflow-hidden opacity-80 shrink-0">
-                {userPic ? (
+                {
+                  <ProfileImg
+                    src={userPic && `/pic_uploads/${userPic}`}
+                    alt={username + "picture"}
+                  />
+                }
+                {/* {userPic && (
                   <ProfileImg
                     src={`/pic_uploads/${userPic}`}
                     alt={username + "picture"}
                   />
-                ) : (
-                  <ProfileImg
+                )} */}
+
+                {/* <ProfileImg
                     src={require("../../image/icons/blank_profile.jpg")}
                     alt={username + "picture"}
                     className="w-full"
-                  />
-                )}
+                  /> */}
               </div>
               <div className=" creator-name text-white opacity-80  capitalize whitespace-nowrap overflow-hidden text-ellipsis">
                 {username}

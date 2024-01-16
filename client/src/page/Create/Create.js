@@ -87,7 +87,7 @@ const Create = () => {
       onDrop={preventDefault}
       onDragOver={preventDefault}
     >
-      <div className="pin-creator bg-white  rounded-2xl  mx-auto max-sm:mx-0 mt-12 max-sm:mt-0 max-sm:w-full max-sm:h-auto pb-20 max-sm:flex max-sm:flex-col max-sm:rounded-none">
+      <div className="pin-creator bg-white  rounded-2xl  mx-auto max-sm:mx-0 mt-12 max-sm:mt-0 max-sm:w-full max-sm:h-auto max-sm:pb-20 max-sm:flex max-sm:flex-col max-sm:rounded-none">
         {/* <FileUpload/> */}
         <div className="pin-form  m-12 max-sm:m-5 flex gap-10 max-sm:gap-5 max-sm:flex-col ">
           <div className="upload-field">
