@@ -55,7 +55,7 @@ const login = async (req, res) => {
       .cookie("token", token, {
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         httpOnly: true,
-        secure: false,
+        secure: true,
         sameSite: "None",
       })
       .json({ message: "user login successfully", id: user._id });
