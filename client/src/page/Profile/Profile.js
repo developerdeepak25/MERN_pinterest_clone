@@ -132,7 +132,7 @@ const Profile = () => {
 
               {/* </NavLink> */}
             </div>
-            <div className="user-posts-container mt-16">
+            <div className="user-posts-container mt-16 w-full">
               {/* {selectedTab === "saved" ? (
                 <UserSavedPosts savedPosts={savedPosts} />
               ) : (
