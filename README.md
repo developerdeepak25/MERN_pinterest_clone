@@ -1,7 +1,7 @@
 
 # MERN Pinterest Clone
 
-This is a Pinterest Clone with various features of it which u can see your self.
+This is a Pinterest Clone with various features of it, Which u can see your self.
 
 
 ## Project Setup - Locally
