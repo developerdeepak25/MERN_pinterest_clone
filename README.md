@@ -1,70 +1,71 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MERN Pinterest Clone
 
-## Available Scripts
+This is a Pinterest Clone with various features of it, Which u can see your self.
 
-In the project directory, you can run:
 
-### `npm start`
+## Project Setup - Locally
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Prerequisites:**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Git
+- Node.js
+- MongoDB (set up locally or on MongoDB Atlas)
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Step 1:**
 
-### `npm run build`
+- Run the following command in an empty folder:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+git clone -b feature/made-responsive-b6 https://github.com/developerdeepak25/MERN_pinterest_clone.git
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![18 01 2024_15 53 04_REC](https://github.com/developerdeepak25/MERN_pinterest_clone/assets/88885917/0d722799-d990-47a2-8f5c-7c7cbc5fd271)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Step 2:**
 
-### `npm run eject`
+- Navigate inside folder created:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+cd .\MERN_pinterest_clone\
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![18 01 2024_15 55 52_REC](https://github.com/developerdeepak25/MERN_pinterest_clone/assets/88885917/117a2041-334a-43bf-93f9-c81d8c7298d6)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**Step 3:**
 
-## Learn More
+- In two seprate terminals navigate to clinet & server folder
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![18 01 2024_16 03 27_REC](https://github.com/developerdeepak25/MERN_pinterest_clone/assets/88885917/c9d384d9-52b7-42bb-bf40-c229aaa9853d)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+- Then Run npm install for both terminals
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+npm install
+```
 
-### Analyzing the Bundle Size
+**Step 4 - No need if using mongoDB community server**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Open .env file inide server folder
+  
+![18 01 2024_16 09 31_REC](https://github.com/developerdeepak25/MERN_pinterest_clone/assets/88885917/cb576fe8-3be2-4a3d-abe8-407ac88d1f54)
 
-### Making a Progressive Web App
+- Replace MONGODB_URI value with your MongoDB URI string like this -
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![18 01 2024_16 20 05_REC](https://github.com/developerdeepak25/MERN_pinterest_clone/assets/88885917/b846a7ac-8f0d-49fa-b283-094c3da5e9a3)
 
-### Advanced Configuration
+- Also don't forgot to add '/pinterest_clone' add the end of the string
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+**Step 5**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- run `npm start` in both the terminals
+  
+```bash
+npm start
+```
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![18 01 2024_16 26 40_REC](https://github.com/developerdeepak25/MERN_pinterest_clone/assets/88885917/6438e9de-cb40-49ce-8142-201b763cee03)
