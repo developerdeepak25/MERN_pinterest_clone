@@ -24,6 +24,12 @@ const userSchema = new mongoose.Schema({
     unique: false,
     default: null
   },
+  userPicRef: {
+    type: String,
+    required: false,
+    unique: false,
+    default: null
+  },
   posts: [
     {
       type: mongoose.Schema.Types.ObjectId,

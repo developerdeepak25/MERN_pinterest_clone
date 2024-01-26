@@ -56,7 +56,8 @@ const SinglePin = () => {
           <div className="visual-pin-container w-[512px] max-sm:w-auto ">
             <SuspenseImg
               className="w-full"
-              src={`/uploads/${image}`}
+              // src={`/uploads/${image}`}
+              src={image}
               fileName={image}
               alt="post_image"
               height={500}
@@ -78,7 +79,7 @@ const SinglePin = () => {
                 <div className="creator-image rounded-full w-9 aspect-square overflow-hidden opacity-80 shrink-0">
                    {
                     <ProfileImg
-                      src={user?.userPic && `/pic_uploads/${user.userPic}`}
+                      src={user?.userPic}
                       alt={user?.username}
                     />}
                   {/* {user?.userPic && (

@@ -155,7 +155,7 @@ const ProfilePic = () => {
       {
         <ProfileImg
           className="rounded-full"
-          src={userPic && `/pic_uploads/${userPic}`}
+          src={userPic}
           alt={username + "picture"}
         />
       }

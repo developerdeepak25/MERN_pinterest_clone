@@ -6,9 +6,15 @@ import { useNavigate } from "react-router-dom";
 import InputField from "../../components/Inputs/InputField";
 import toast from "react-hot-toast";
 import AxiosInstance from "../../AxiosInstance/AxiosInstance";
+import { fileUpload } from "../../firebase/fileUpload";
+import { deleteObject, ref } from "firebase/storage";
+import storage from "../../firebase/firebaseConfigs";
+// import storage, { Fb } from "../../firebase/firebaseConfigs";
 
 const Create = () => {
   const [file, setFile] = useState(null);
+  // console.log("🚀 ~ Create ~ file:", file)
+  // const [fileUrl, setFileUrl] = useState(null);
   const [fileMetadata, setFileMetaData] = useState({
     pinTitle: "",
     pinDescription: "",
@@ -38,31 +44,38 @@ const Create = () => {
         setErrorMsg("Title and Description are required.");
         return;
       }
-      const formData = new FormData();
-      // console.log(formData);
 
-      //appendin img file
-      formData.append("upload_file", file);
+      // uploading to firebase
+      await fileUpload(file).then(async (fileUrl) => {
+        console.log("🚀 ~ uploadHandler ~ fileURL:", fileUrl);
+        // formData.append("uploadFile", JSON.stringify(fileURL));
+        // //appending image meta data or additionals
+        // formData.append("pinTitle", fileMetadata.pinTitle);
+        // formData.append("pinDescription", fileMetadata.pinDescription);
+        // console.log(formData);
+        //  });
 
-      //appending image meta data or additionals
-      formData.append("pinTitle", fileMetadata.pinTitle);
-      formData.append("pinDescription", fileMetadata.pinDescription);
+        const response = await AxiosInstance.post(`/image/upload`, {
+          ...fileMetadata,
+          uploadFile: fileUrl,
+          fileName: file.name,
+        });
 
-      const response = await AxiosInstance.post(
-        `/image/upload`,
-        formData
-      );
-      // const resJson = await response.json();
+        // //appendin img file
+        // formData.append("upload_file", file);
 
-      if (response.status === 200) {
-        // console.log("Upload.js", resJson);
-        console.log(response.data.message);
-        toast.success('post created successfully')
-        navigate("/");
-      } else {
-        toast.error('post creation failed: please check your connection')
-        console.log(response.data.message);
-      }
+        // const resJson = await response.json();
+
+        if (response.status === 200) {
+          // console.log("Upload.js", resJson);
+          console.log(response.data.message);
+          toast.success("post created successfully");
+          navigate("/");
+        } else {
+          toast.error("post creation failed: please check your connection");
+          console.log(response.data.message);
+        }
+      });
     } catch (error) {
       toast.error("Oops! Something went wrong.");
       console.log("Failed to upload", error);
@@ -94,20 +107,6 @@ const Create = () => {
             <ImgUploader setFile={(selectedFile) => setFile(selectedFile)} />
           </div>
           <div className="pin-detls-inputs mt-1 w-[36rem] max-sm:w-auto gap-6 flex flex-col max-sm:gap-3">
-            {/* <label
-              htmlFor="pinTitle"
-              className="flex flex-col text-[#111111] text-sm gap-2"
-            >
-              Title
-              <input
-                type="text"
-                name="pinTitle"
-                id="pinTitle"
-                className="border-2 border-[#cdcdcd] text-base px-4 py-2 rounded-xl"
-                onChange={handleChange}
-                // disabled
-              />
-            </label> */}
             <InputField
               name={"pinTitle"}
               id={"pinTitle"}
@@ -130,7 +129,7 @@ const Create = () => {
             </label>
             <div className="pin-prime-btn flex">
               <button disabled={underUpload} onClick={uploadHandler}>
-                Publish
+                {underUpload ? "Publishing..." : "Publish"}
               </button>
             </div>
             {errorMsg && (
@@ -142,14 +141,6 @@ const Create = () => {
         </div>
       </div>
     </div>
-    // <div >
-    //   <input
-    //     type="file"
-    //     name="upload_file"
-    //     onChange={(e) => setFile(e.target.files[0])}
-    //   />
-    //   <button onClick={uploadHandler}>upload</button>
-    // </div>
   );
 };
 

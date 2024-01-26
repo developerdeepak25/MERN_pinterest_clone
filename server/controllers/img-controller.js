@@ -8,8 +8,9 @@ const getUserProfile = async (req, res) => {
     const userId = getDataFromToken(req);
 
     console.log("id", userId);
-    const userData = await User.findOne({ _id: userId })
-    .select("-password -posts -savedPosts");
+    const userData = await User.findOne({ _id: userId }).select(
+      "-password -posts -savedPosts"
+    );
     // const userData = await User.findById(userId);
     console.log(
       " ~ file: img-controller.js:13 ~ getData ~ userData:",
@@ -76,17 +77,20 @@ const getSavedPosts = async (req, res) => {
 
 const uploadFile = async (req, res) => {
   try {
-    const { pinTitle, pinDescription } = req.body;
-    if (!req.file) {
-      return res.status(404).json({ message: "no files were given" });
-    }
+    // const { pinTitle, pinDescription } = req.body; // fbase modification
+    const { pinTitle, pinDescription, uploadFile, fileName } = req.body;
+    console.log("🚀 ~ uploadFile ~ upload_file:", uploadFile);
+    // if (!req.file) {
+    //   return res.status(404).json({ message: "no files were given" });
+    // }
 
     const userId = getDataFromToken(req);
     const user = await User.findOne({ _id: userId });
     const post = await Post.create({
-      image: req.file.filename,
+      imageRef: fileName,
       imageTitle: pinTitle,
       imageDescirption: pinDescription,
+      image: uploadFile,
       user: user._id,
     });
     user.posts.push(post._id);
@@ -102,8 +106,12 @@ const uploadFile = async (req, res) => {
   }
 };
 const uploadUserPic = async (req, res) => {
+  const { uploadFile, fileName } = req.body;
   try {
-    if (!req.file) {
+    // if (!req.file) {
+    //   return res.status(404).json({ message: "no files were given" });
+    // }
+    if (!(uploadFile || fileName)) {
       return res.status(404).json({ message: "no files were given" });
     }
 
@@ -111,16 +119,16 @@ const uploadUserPic = async (req, res) => {
 
     // Retrieve old user picture filename
     const user = await User.findOne({ _id: userId });
-    const oldUserPic = user.userPic;
-    const filePath = `./public/pic_uploads/${oldUserPic}`;
+    const oldUserPic = user.userPicRef;
+    // const filePath = `./public/pic_uploads/${oldUserPic}`;
 
-    if (fs.existsSync(filePath)) {
-      fs.unlinkSync(filePath);
-    }
+    // if (fs.existsSync(filePath)) {
+    //   fs.unlinkSync(filePath);
+    // }
 
     const updatedUser = await User.findOneAndUpdate(
       { _id: userId },
-      { userPic: req.file.filename },
+      { userPic: uploadFile, userPicRef: fileName },
       { new: true }
     );
 
@@ -130,7 +138,11 @@ const uploadUserPic = async (req, res) => {
     // res.send("file uploaded successfully")
     res
       .status(200)
-      .json({ message: "uploaded successfully", userPic: updatedUser.userPic });
+      .json({
+        message: "uploaded successfully",
+        userPic: updatedUser.userPic,
+        oldUserPic,
+      });
   } catch (error) {
     res.json({ message: "Error: " + error.message });
   }
@@ -284,15 +296,15 @@ const deletePost = async (req, res) => {
     user.posts.pull(postId);
     await user.save();
 
-    const filePath = `./public/uploads/${deletedpost.image}`;
+    // const filePath = `./public/uploads/${deletedpost.image}`;
 
-    if (fs.existsSync(filePath)) {
-      // Delete the file
-      fs.unlinkSync(filePath);
-      res.status(200).json({ message: "File deleted successfully" });
-    } else {
-      res.status(404).json({ message: "File not found" });
-    }
+    // if (fs.existsSync(filePath)) {
+    //   // Delete the file
+    //   fs.unlinkSync(filePath);
+    res.status(200).json({ message: "File deleted successfully" });
+    // } else {
+    //   res.status(404).json({ message: "File not found" });
+    // }
   } catch (error) {
     res.json({ message: "Error: " + error.message });
   }
@@ -309,5 +321,4 @@ module.exports = {
   savePost,
   unSavePost,
   deletePost,
-  
 };

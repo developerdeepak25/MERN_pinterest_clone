@@ -21,8 +21,8 @@ const HashLoaderWapper = () => {
         size={18}
         speedMultiplier={1.2}
         cssOverride={{
-          "background-color": "#5f5f5f",
-          "border-radius": "50%",
+          "backgroundColor": "#5f5f5f",
+          "borderRadius": "50%",
           padding: "20px",
         }}
       />

@@ -4,23 +4,26 @@ import { useDispatch } from "react-redux";
 import { deleteStatePost } from "../../store/slices/UserSlice";
 import toast from "react-hot-toast";
 import AxiosInstance from "../../AxiosInstance/AxiosInstance";
+import { deleteFile } from "../../firebase/deleteFile";
 
-const DeletePost = ({ id }) => {
-  const dispatch = useDispatch()
+const DeletePost = ({ id, imageRef }) => {
+  const dispatch = useDispatch();
   const deletePost = async (event) => {
     event.stopPropagation();
     console.log("inside deletePost function");
     try {
-      const resData = await AxiosInstance.delete(
-        `/image/deletepost/${id}`
-      );
+      const resData = await AxiosInstance.delete(`/image/deletepost/${id}`)
+
+        deleteFile(imageRef)
+      // })
+      // console.log('image deleted successfully');
       console.log(
         "🚀 ~ file: Home.js:10 ~ getDataFromServer ~ resData:",
         resData
       );
       if (resData.status === 200) {
-        dispatch(deleteStatePost(id))
-        toast.success('post deleted successfully')
+        dispatch(deleteStatePost(id));
+        toast.success("post deleted successfully");
         console.log("post deleted successfully");
       }
       // const { postData } = resData.data;

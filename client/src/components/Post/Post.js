@@ -6,7 +6,7 @@ import DeletePost from "./DeletePost";
 import ProfileImg from "../ProfileImg/ProfileImg";
 
 const Post = ({ data, userInfo, type }) => {
-  const { _id, image, imageTitle, user } = data;
+  const { _id, image, imageTitle, user,imageRef } = data;
   console.log("🚀 ~ file: Post.js:7 ~ Post ~ _id:", _id);
   const username = userInfo?.username || user?.username;
   const userPic = userInfo?.userPic || user?.userPic;
@@ -17,7 +17,7 @@ const Post = ({ data, userInfo, type }) => {
       <NavLink to={`/pin/${_id}`} className={"relative "}>
         <SuspenseImg
           className="w-full"
-          src={`/uploads/${image}`}
+          src={image}
           fileName={image}
           alt={imageTitle}
           height={360}
@@ -37,7 +37,7 @@ const Post = ({ data, userInfo, type }) => {
               <div className="creator-image rounded-full w-7 aspect-square overflow-hidden opacity-80 shrink-0">
                 {
                   <ProfileImg
-                    src={userPic && `/pic_uploads/${userPic}`}
+                    src={userPic}
                     alt={username + "picture"}
                   />
                 }
@@ -58,7 +58,7 @@ const Post = ({ data, userInfo, type }) => {
                 {username}
               </div>
             </div>
-            {type === "user-post" && <DeletePost id={_id} />}
+            {type === "user-post" && <DeletePost id={_id}  imageRef={imageRef}/>}
           </div>
           {/* )} */}
         </div>

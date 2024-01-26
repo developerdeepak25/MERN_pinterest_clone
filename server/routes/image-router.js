@@ -50,8 +50,8 @@ const createDiskStorage = (folder) => {
   });
 };
 
-// Configuration for storing posts
-const postStorage = createDiskStorage('uploads');
+// // Configuration for storing posts
+// const postStorage = createDiskStorage('uploads'); // fbase modification
 
 // Configuration for storing user profile pictures
 const profilePicStorage = createDiskStorage('pic_uploads');
@@ -59,9 +59,9 @@ const profilePicStorage = createDiskStorage('pic_uploads');
 
 
 // Middleware for posts
-const uploadPost = multer({ storage: postStorage });
+// const uploadPost = multer({ storage: postStorage });  // fbase modification
 
-// Middleware for posts
+// Middleware for user pic
 const uploadProfilePic = multer({ storage: profilePicStorage });
 
 
@@ -69,7 +69,9 @@ const uploadProfilePic = multer({ storage: profilePicStorage });
 router.use(isAuthenticated)
 
 //data upload route (post upload route)
-router.post("/upload", uploadPost.single("upload_file"), uploadFile);
+router.post("/upload",  uploadFile);
+// //data upload route (post upload route)
+// router.post("/upload", uploadPost.single("upload_file"), uploadFile);
 
 //userpic upload route (post upload route)
 router.post(

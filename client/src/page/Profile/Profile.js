@@ -92,8 +92,10 @@ const Profile = () => {
                 />
               ) : (
                 <ProfileImg
+                  absolute={true}
                   src={
-                    userPic && `/pic_uploads/${userPic}`
+                    // userPic && `/pic_uploads/${userPic}`
+                    userPic
                     // userPic
                     //   ? `/pic_uploads/${userPic}`
                     //   : require("../../image/icons/blank_profile.jpg")

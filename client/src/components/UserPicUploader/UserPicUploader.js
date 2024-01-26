@@ -4,13 +4,19 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { updateState } from "../../store/slices/UserSlice";
 import AxiosInstance from "../../AxiosInstance/AxiosInstance";
+import { fileUpload } from "../../firebase/fileUpload";
+import { deleteFile } from "../../firebase/deleteFile";
 
 const UserPicUploader = ({ setTempPic }) => {
   const state = useSelector((state) => {
     return state.User;
   });
-  console.log("🚀 ~ file: UserPicUploader.js:11 ~ constst̥ate=useSelector ~ st̥ate:", state)
-  const dispatch = useDispatch()
+  // const [file, setFile] = useState("");
+  console.log(
+    "🚀 ~ file: UserPicUploader.js:11 ~ constst̥ate=useSelector ~ st̥ate:",
+    state
+  );
+  const dispatch = useDispatch();
   const inputRef = useRef(null);
   //   const [File, setFile] = useState(null);
 
@@ -22,21 +28,27 @@ const UserPicUploader = ({ setTempPic }) => {
     const File = e.target.files[0];
     console.log(File);
     try {
-      const formData = new FormData();
-      formData.append("upload_pic_file", File);
+      // const formData = new FormData();
+      // formData.append("upload_pic_file", File);
 
       // const resData = await fetch("/image/getdata");
-      const response = await AxiosInstance.post("/image/uploaduserpic", formData);
-      if (response.status === 200) {
-        // console.log("Upload.js", resJson);
-        if (response.data.userPic) {
-          console.log(response.data.userPic);
-          
-          dispatch(updateState({userPic:response.data.userPic}))
+      await fileUpload(File).then(async (fileUrl) => {
+        const response = await AxiosInstance.post("/image/uploaduserpic", {
+          uploadFile: fileUrl,
+          fileName: File.name,
+        });
+        if (response.status === 200) {
+          // console.log("Upload.js", response);
+          if (response.data.userPic) {
+            // console.log(response.data.userPic);
+
+            dispatch(updateState({ userPic: response.data.userPic }));
+            deleteFile(response.data.oldUserPic);
+          }
+          console.log(response.data);
         }
-        console.log(response.data);
-      }
-      console.log(response.data.message);
+        console.log(response.data.message);
+      });
     } catch (error) {
       console.log("Failed to upload", error);
     }
