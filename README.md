@@ -56,7 +56,7 @@ npm install
 
 ![18 01 2024_16 20 05_REC](https://github.com/developerdeepak25/MERN_pinterest_clone/assets/88885917/b846a7ac-8f0d-49fa-b283-094c3da5e9a3)
 
-- Also don't forgot to add '/pinterest_clone' add the end of the string
+- Also don't forgot to add '/pinterest_clone' at the end of the string
 
 
 **Step 5**
